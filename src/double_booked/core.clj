@@ -6,10 +6,9 @@
             [clojure.math.combinatorics :as comb]))
 
 (defn parse-csv [data]
-  (when-let [lines (str/split data #";")]
-    (map  (fn [line] (->> (str/split line #",")
-                          (map str/trim)))
-          lines)))
+  (->> (str/split data #";")
+       (map (fn [line] (->> (str/split line #",")
+                            (map str/trim))))))
 
 (defn pairs-to-csv [events]
   (->> events
